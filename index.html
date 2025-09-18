@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Reaction Test</title>
-    <link rel="stylesheet" href="index.js.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="popover.css">
 </head>
 <body>
 
-    <div id="page-container">
-    
-        <aside id="sidebar">
+    <nav>
+        <button popovertarget="container-settings" opovertargetaction="show" id="button-setting" style="--icon:url(icons/trophy.svg);"><span>Setting</span></button>
+        <button popovertarget="container-highscore" id="button-highscore" style="--icon:url(icons/settings.svg);"><span>Highscore</span></button>
+    </nav>
 
-        </aside>
+    <main id="game-container">
 
+        <div class="popover" popover id="container-settings">
+            <button popovertarget="container-settings" popovertargetaction="hide"></button>
+            <p>Hello World</p>
+        </div>
+        <div class="popover" popover id="container-highscore">
+            <button popovertarget="container-highscore" popovertargetaction="hide"></button>
+            <p>World Hello</p>
+        </div>
 
-        <main id="game-container">
-            <canvas id="game-canvas">
+        <canvas id="game-canvas">
 
-            </canvas>
+        </canvas>
 
-            <footer id="game-dashboard">
+        <footer id="game-dashboard">
 
-                <div id="game-scoreboard">
-                    <p> 999 points </p>
-                </div>
+            <div id="game-scoreboard">
+                <p> 999 points </p>
+            </div>
 
-                <div id="game-timer">
-                    <p> 12:23 sec</p>
-                </div>
-                
-            </footer>
+            <div id="game-timer">
+                <p> 12:23 sec</p>
+            </div>
 
-        </main>
+        </footer>
 
-    </div>
+    </main>
 
 
 </body>
