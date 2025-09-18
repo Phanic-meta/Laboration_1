@@ -36,6 +36,7 @@ nav button{
     background-position: center;
     border: none;
     cursor: pointer;
+    position: relative;
 }
 nav button:hover span{
     --scale : 1;
