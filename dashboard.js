@@ -4,14 +4,13 @@ const add_point_button = document.getElementById('add-point-button');
 const reset_point_button = document.getElementById('reset-point-button');
 const timerDisplay = document.querySelector('#game-timer p');
 
-
+let varGameTime = 5;
 let timer;
-let timeLeftInMs = 40 * 1000;
-const totalDurationInMs = 40 * 1000;
+const totalDurationInMs = varGameTime * 1000;
 
 function startTimer() {
   if (timer) return;
-  const startTime = Date.now(); // Zeitpunkt des Starts speichern
+  const startTime = Date.now();
 
   timer = setInterval(() => {
     const elapsedTime = Date.now() - startTime;
@@ -20,13 +19,19 @@ function startTimer() {
     if (timeLeftInMs <= 0) {
       clearInterval(timer);
       timer = null;
-      timerDisplay.textContent = `Time is up!`;
+
+      // make the color red when the timer hiits 0 seconds
+      timerDisplay.style.color = 'red';
+      timerDisplay.textContent = `00:00`;
+      setTimeout(() => {
+        timerDisplay.style.color = 'black';
+      }, 500);
+
       return;
     }
     const seconds = Math.floor(timeLeftInMs / 1000);
     const milliseconds = timeLeftInMs % 1000;
     const formattedMs = String(milliseconds).padStart(2, '0').substring(0, 2);
-
     timerDisplay.textContent = `${seconds}:${formattedMs}`;
 
   }, 10);
@@ -36,9 +41,8 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timer);
   timer = null;
-  // Setze die Zeit auf den ursprünglichen Wert zurück
   timeLeftInMs = totalDurationInMs;
-  timerDisplay.textContent = `Hello World`;
+  timerDisplay.textContent = `${varGameTime}:00`;
 }
 
 
