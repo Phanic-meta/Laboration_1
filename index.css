@@ -23,12 +23,14 @@ main{
   align-items: center;
 }
 #game-canvas{
+  height: 90%;
   background-color: var(--white);
   width: 100%;
   border: 4px dashed var(--light-blue);
 }
 
 #game-dashboard{
+  height: 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
