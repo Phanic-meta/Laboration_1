@@ -4,6 +4,12 @@ const add_point_button = document.getElementById('add-point-button');
 const reset_point_button = document.getElementById('reset-point-button');
 const timerDisplay = document.querySelector('#game-timer p');
 
+
+
+
+
+// Timer functionality
+
 let varGameTime = 5;
 let timer;
 const totalDurationInMs = varGameTime * 1000;
@@ -48,3 +54,30 @@ function stopTimer() {
 
 timer_start_button.addEventListener('click', startTimer);
 timer_stop_button.addEventListener('click', stopTimer);
+
+
+
+// Score functionality
+
+let score = 0;
+let pointsPerClick = 10;
+const scoreboard = document.querySelector('#game-scoreboard p');
+
+
+function collectPoints(){
+    score += pointsPerClick;
+    scoreboard.textContent = `${score} points`;
+}
+
+function resetPoints(){
+    score = 0;
+    scoreboard.textContent = `${score} points`;
+}
+
+add_point_button.addEventListener('click', () => {
+    collectPoints();
+});
+
+reset_point_button.addEventListener('click', () => {
+    resetPoints();
+});
