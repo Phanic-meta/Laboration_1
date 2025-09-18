@@ -1,4 +1,17 @@
 .popover:popover-open{
     width: 50%;
-    height: auto;
+    height: 90%;
+    border-radius: 16px;
+    border: none;
+    background-color: var(--blue);
+    box-shadow: var(--shadow);
+}
+
+#container-settings:popover-open{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: var(--text-color);
 }
