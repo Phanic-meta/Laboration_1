@@ -10,12 +10,11 @@
 <body>
 
     <nav>
-        <button popovertarget="container-settings" opovertargetaction="show" id="button-setting" style="--icon:url(icons/trophy.svg);"><span>Setting</span></button>
-        <button popovertarget="container-highscore" id="button-highscore" style="--icon:url(icons/settings.svg);"><span>Highscore</span></button>
+        <button popovertarget="container-settings" opovertargetaction="show" id="button-setting" style="--icon:url(icons/settings.svg);"><span>Setting</span></button>
+        <button popovertarget="container-highscore" id="button-highscore" style="--icon:url(icons/trophy.svg);"><span>Highscore</span></button>
     </nav>
 
-    <main id="game-container">
-
+    <main>
         <div class="popover" popover id="container-settings">
             <button popovertarget="container-settings" popovertargetaction="hide"></button>
             <p>Hello World</p>
@@ -25,12 +24,11 @@
             <p>World Hello</p>
         </div>
 
-        <canvas id="game-canvas">
+        <div id="game-canvas">
+            <p>Hello World</p>
+        </div>
 
-        </canvas>
-
-        <footer id="game-dashboard">
-
+        <div id="game-dashboard">
             <div id="game-scoreboard">
                 <p> 999 points </p>
             </div>
@@ -38,11 +36,9 @@
             <div id="game-timer">
                 <p> 12:23 sec</p>
             </div>
-
-        </footer>
-
+        </div>
     </main>
-
-
+    <footer>
+    </footer>
 </body>
 </html>

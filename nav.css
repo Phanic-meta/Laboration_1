@@ -2,15 +2,11 @@
 nav {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: min(64px, 6%);
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
+    width: 64px;                 /* fixe Breite für Sidebar */
     background-color: var(--blue);
-    padding-top: 20px;
     align-items: center;
+    padding-top: 20px;
+    flex-shrink: 0;
 }
 nav button span{
     width: 120px;
