@@ -1,0 +1,23 @@
+{
+  "name": "laboration",
+  "version": "1.0.0",
+  "description": "Git repo for the course \"Development of Web Applications\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Phanic-meta/Laboration_1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Phanic-meta/Laboration_1/issues"
+  },
+  "homepage": "https://github.com/Phanic-meta/Laboration_1#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
