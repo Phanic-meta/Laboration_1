@@ -5,3 +5,59 @@
     --button-color: #7DD8FF;
     --blue: #54B1D9;
 }
+* {
+    box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+#page-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+#sidebar{
+    width: 100px;
+    background-color: var(--blue);
+    padding: 20px;
+}
+#game-container{
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* bec of page--container flex */
+}
+#game-canvas{ /* canvas */
+  flex: 1; /* game-container */
+  background-color: var(--white);
+  border: 4px dashed var(--light-blue);
+}
+
+#game-dashboard{ /* footer */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 100px;
+  background-color: var(--white);
+  padding: 10px;
+}
+
+#game-scoreboard, #game-timer{
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--light-blue);
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-scoreboard p, #game-timer p {
+    font-size: 2em; 
+    font-weight: bold;
+    margin: 0;
+}
