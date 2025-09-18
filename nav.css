@@ -1,0 +1,64 @@
+/* Navbar styles */
+nav {
+    display: flex;
+    flex-direction: column;
+    width: 64px;                 /* fixe Breite für Sidebar */
+    background-color: var(--blue);
+    align-items: center;
+    padding-top: 20px;
+    flex-shrink: 0;
+}
+nav button span{
+    width: 120px;
+    background-color: var(--blue);
+    color: var(--white);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    left: 110%;
+    top: 50%;
+    transform-origin: center left;
+    --scale : 0;
+    transform: translateY(-50%) scale(var(--scale));
+    transition: transform 0.3s ease;
+}
+
+nav button{
+    background-color: var(--blue);
+    width: min(100%, 100%);
+    height: min(80px, 10%);
+    transition: ease 0.3s;
+    background-image: var(--icon);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    filter: brightness(100%);
+}
+nav button:hover span{
+    --scale : 1;
+}
+
+nav button:focus {
+    background-color: var(--button-color);
+}
+
+@media only screen and (max-width: 700px) {
+    nav{
+        flex-direction: row;
+        width: 100%;
+        height: min(64px, 10%);
+        padding: 0;
+        justify-content: center;
+        align-self: flex-end;
+    }
+    nav button{
+        width: min(80px, 25%);
+        height: min(100%, 100%);
+    }
+    nav button:hover span{
+        --scale : 0;
+    }
+}

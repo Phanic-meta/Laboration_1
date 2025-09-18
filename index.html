@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Reaction Test</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="popover.css">
 </head>
 <body>
 
+    <nav>
+        <button popovertarget="container-settings" opovertargetaction="show" id="button-setting" style="--icon:url(icons/settings.svg);"><span>Setting</span></button>
+        <button popovertarget="container-highscore" id="button-highscore" style="--icon:url(icons/trophy.svg);"><span>Highscore</span></button>
+    </nav>
+
+    <main>
+        <div class="popover" popover id="container-settings">
+            <button popovertarget="container-settings" popovertargetaction="hide"></button>
+            <p>Hello World</p>
+        </div>
+        <div class="popover" popover id="container-highscore">
+            <button popovertarget="container-highscore" popovertargetaction="hide"></button>
+            <p>World Hello</p>
+        </div>
+
+        <div id="game-canvas">
+            <p>Hello World</p>
+        </div>
+
+        <div id="game-dashboard">
+            <div id="game-scoreboard">
+                <p> 999 points</p>
+            </div>
+
+            <div id="game-timer">
+                <p> 12:23 sec</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
 </body>
 </html>
