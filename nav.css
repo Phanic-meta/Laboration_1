@@ -10,8 +10,9 @@ nav {
 }
 nav button span{
     width: 120px;
+    font-size: 1.2em;
     background-color: var(--blue);
-    color: var(--white);
+    color: var(--text-color);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
@@ -35,13 +36,12 @@ nav button{
     background-position: center;
     border: none;
     cursor: pointer;
-    filter: brightness(100%);
 }
 nav button:hover span{
     --scale : 1;
 }
 
-nav button:focus {
+nav button:active {
     background-color: var(--button-color);
 }
 
