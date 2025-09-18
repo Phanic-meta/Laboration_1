@@ -19,11 +19,6 @@ body {
     flex-direction: row;
     height: 100vh;
 }
-#sidebar{
-    width: 100px;
-    background-color: var(--blue);
-    padding: 20px;
-}
 #game-container{
     display: flex;
     flex-direction: column;
@@ -40,7 +35,7 @@ body {
   justify-content: space-around;
   align-items: center;
 
-  height: 100px;
+  height: min(100px, 20%);
   background-color: var(--white);
   padding: 10px;
 }
