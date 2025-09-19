@@ -151,7 +151,7 @@ function displayHighscores(highscores) {
     
     highscores.forEach(score => {
         const li = document.createElement('li');
-        li.textContent = `${score.name} - ${score.points} Punkte (${score.date})`;
+        li.textContent = `${score.name} - ${score.points} points (${score.date} - ${score.time})`;
         highscoreList.appendChild(li);
     });
 }
@@ -161,10 +161,15 @@ function addHighscore() {
         playerName = "Empty Player";
     }
     const highscores = loadHighscores();
+    const formattedTime = new Date().toLocaleTimeString('de-DE', {
+        hour: '2-digit',
+        minute: '2-digit'
+    });
     const newScore = {
         name: playerName,
         points: score,
-        date: new Date().toLocaleDateString('de-DE')
+        date: new Date().toLocaleDateString('de-DE'),
+        time: formattedTime
     };
     highscores.push(newScore);
     highscores.sort((a, b) => b.points - a.points);
