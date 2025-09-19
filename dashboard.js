@@ -11,6 +11,8 @@ const activetest = document.querySelector('#game-canvas p');
 
 
 // Timer functionality
+
+
 let varGameTime = 5;
 let timer;
 const totalDurationInMs = varGameTime * 1000;
@@ -30,9 +32,6 @@ const gameStatusProxy = new Proxy(gameState, {
     return true;
   }
 });
-
-
-
 
 // starting the countdown
 function startTimer() {
@@ -112,3 +111,74 @@ add_point_button.addEventListener('click', () => {
 reset_point_button.addEventListener('click', () => {
     resetPoints();
 });
+
+
+
+
+let playerName = "";
+
+// Variable, um auf die HTML-Elemente zuzugreifen
+const highscoreList = document.getElementById('highscore-list');
+const addScoreButton = document.getElementById('add-score-btn');
+const currentScoreElement = document.getElementById('current-score');
+
+// Konstanten für den Speicherort
+const STORAGE_KEY = 'clicker-highscores';
+
+
+function loadHighscores() {
+    const highscoresFromStorage = localStorage.getItem(STORAGE_KEY)
+    return highscoresFromStorage ? JSON.parse(highscoresFromStorage) : [];
+}
+
+function saveHighscores(highscores) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(highscores));
+}
+
+// Highscores auf der Seite anzeigen
+function displayHighscores(highscores) {
+    highscoreList.innerHTML = '';
+    
+    highscores.forEach(score => {
+        const li = document.createElement('li');
+        li.textContent = `${score.name} - ${score.points} Punkte (${score.date})`;
+        highscoreList.appendChild(li);
+    });
+}
+
+function addHighscore(playerName, points) {
+    const highscores = loadHighscores();
+
+    const newScore = {
+        name: playerName,
+        points: points,
+        date: new Date().toLocaleDateString('de-DE')
+    };
+    
+    highscores.push(newScore);
+    
+    // Sortiere die Highscores absteigend nach Punkten
+    highscores.sort((a, b) => b.points - a.points);
+    
+    saveHighscores(highscores);
+    displayHighscores(highscores);
+}
+
+// --- Spiel-Logik (als Beispiel) ---
+
+// Event-Listener zum Speichern eines Scores
+addScoreButton.addEventListener('click', () => {
+    if (playerName == "" || playerName == null) {
+        playerName = prompt("Gib deinen Namen ein, um den Highscore zu speichern:");
+    }
+    
+    addHighscore(playerName, score);
+    score = 0;
+    currentScoreElement.textContent = 0;
+    
+});
+
+window.onload = () => {
+    const highscores = loadHighscores();
+    displayHighscores(highscores);
+};
