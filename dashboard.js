@@ -46,11 +46,12 @@ function startTimer() {
     const elapsedTime = Date.now() - startTime;
     timeLeftInMs = totalDurationInMs - elapsedTime;
 
+    // end of the game
     if (timeLeftInMs <= 0) {
       clearInterval(timer);
       timer = null;
-      
       gameStatusProxy.active = false;
+      addHighscore();
 
       // make the color red when the timer hiits 0 seconds
       timerDisplay.style.color = 'red';
@@ -114,28 +115,37 @@ reset_point_button.addEventListener('click', () => {
 
 
 
+// Highscore Storage functionality
+const highscoreList = document.getElementById('highscore-list');
+const addScoreButton = document.getElementById('add-score-btn');
+const changeNameButton = document.getElementById('change-name-btn');
+const currentScoreElement = document.getElementById('current-score');
+const STORAGE_KEY = 'clicker-highscores';
 
 let playerName = "";
 
-// Variable, um auf die HTML-Elemente zuzugreifen
-const highscoreList = document.getElementById('highscore-list');
-const addScoreButton = document.getElementById('add-score-btn');
-const currentScoreElement = document.getElementById('current-score');
 
-// Konstanten für den Speicherort
-const STORAGE_KEY = 'clicker-highscores';
+// change name
+function changeName() {
+    newName = prompt("Set new player name");
+    if (newName == "" || newName == null) {
+        alert("Name cannot be empty");
+    }
+    else { 
+        playerName = newName;
+    }
+}
+changeNameButton.addEventListener('click', changeName);
+
 
 
 function loadHighscores() {
     const highscoresFromStorage = localStorage.getItem(STORAGE_KEY)
     return highscoresFromStorage ? JSON.parse(highscoresFromStorage) : [];
 }
-
 function saveHighscores(highscores) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(highscores));
 }
-
-// Highscores auf der Seite anzeigen
 function displayHighscores(highscores) {
     highscoreList.innerHTML = '';
     
@@ -146,37 +156,26 @@ function displayHighscores(highscores) {
     });
 }
 
-function addHighscore(playerName, points) {
+function addHighscore() {
+    if (playerName == "" || playerName == null) {
+        playerName = "Empty Player";
+    }
     const highscores = loadHighscores();
-
     const newScore = {
         name: playerName,
-        points: points,
+        points: score,
         date: new Date().toLocaleDateString('de-DE')
     };
-    
     highscores.push(newScore);
-    
-    // Sortiere die Highscores absteigend nach Punkten
     highscores.sort((a, b) => b.points - a.points);
     
     saveHighscores(highscores);
     displayHighscores(highscores);
-}
 
-// --- Spiel-Logik (als Beispiel) ---
-
-// Event-Listener zum Speichern eines Scores
-addScoreButton.addEventListener('click', () => {
-    if (playerName == "" || playerName == null) {
-        playerName = prompt("Gib deinen Namen ein, um den Highscore zu speichern:");
-    }
-    
-    addHighscore(playerName, score);
     score = 0;
     currentScoreElement.textContent = 0;
-    
-});
+}
+
 
 window.onload = () => {
     const highscores = loadHighscores();
