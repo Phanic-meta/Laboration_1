@@ -24,7 +24,7 @@ const gameState = {
 const gameStatusProxy = new Proxy(gameState, {
   set(target, property, value) {
     if (property === 'active') {
-      activetest.textContent = `Status: ${value ? 'Aktiv' : 'Inaktiv'}`;
+      activetest.textContent = `Status: ${value}`;
     }
     target[property] = value;
     return true;
@@ -38,7 +38,9 @@ const gameStatusProxy = new Proxy(gameState, {
 function startTimer() {
   if (timer) return;
 
+  resetPoints(); // reset scrore when new game starts
   gameStatusProxy.active = true;
+
   const startTime = Date.now();
 
   timer = setInterval(() => {
@@ -93,7 +95,7 @@ let score = 0;
 let pointsPerClick = 10;
 
 function collectPoints(){
-    //if (!varActiveGame) return;
+    if (!gameStatusProxy.active) return;
     score += pointsPerClick;
     scoreboard.textContent = `${score} points`;
 }
