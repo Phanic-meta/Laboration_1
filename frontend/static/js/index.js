@@ -1,7 +1,15 @@
+import Gameview from "./views/Gameview.js";
+import Mainmenu from "./views/Mainmenu.js";
+
+const navigateTo = url => {
+    history.pushState(null, null, url);
+    router();
+}
+
 const router = async () => {
     const routes = [
-        { path: "/", view: () => console.log("View Mainmenu") },
-        { path: "/game", view: () => console.log("View Game") },
+        { path: "/", view: Mainmenu },
+        { path: "/game", view: Gameview },
     ];
 
     const potentialMatches = routes.map(route => {
@@ -18,6 +26,19 @@ const router = async () => {
             isMatch: true
         };
     }
-    console.log(match);
+
+    const view = new match.route.view();
+
+    document.querySelector('#app').innerHTML = await view.getHtml();
 }
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.body.addEventListener('click', e => {
+        if (e.target.matches("[data-link]")) {
+            e.preventDefault();
+            navigateTo(e.target.href);
+        }
+    });
+
+    router();
+})
