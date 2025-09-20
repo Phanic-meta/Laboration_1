@@ -48,18 +48,20 @@ function startTimer() {
 
     // end of the game
     if (timeLeftInMs <= 0) {
+      timerDisplay.textContent = `00:00`;
       clearInterval(timer);
       timer = null;
       gameStatusProxy.active = false;
-      addHighscore();
+      
 
       // make the color red when the timer hiits 0 seconds
       timerDisplay.style.color = 'red';
       scoreboard.style.color = 'red';
-      timerDisplay.textContent = `00:00`;
       setTimeout(() => {
         timerDisplay.style.color = 'black';
         scoreboard.style.color = 'black';
+
+      addHighscore();
       }, 500);
 
       return;
@@ -125,7 +127,7 @@ const STORAGE_KEY = 'clicker-highscores';
 let playerName = "";
 
 
-// change name
+// change name button
 function changeName() {
     newName = prompt("Set new player name");
     if (newName == "" || newName == null) {
@@ -138,7 +140,7 @@ function changeName() {
 changeNameButton.addEventListener('click', changeName);
 
 
-
+// load and display highscores from local storage
 function loadHighscores() {
     const highscoresFromStorage = localStorage.getItem(STORAGE_KEY)
     return highscoresFromStorage ? JSON.parse(highscoresFromStorage) : [];
@@ -156,6 +158,7 @@ function displayHighscores(highscores) {
     });
 }
 
+// save highscore in local storage afteer game ends
 function addHighscore() {
     if (playerName == "" || playerName == null) {
         playerName = "Empty Player";
